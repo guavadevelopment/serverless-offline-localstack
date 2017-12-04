@@ -12,6 +12,7 @@ class ServerlessOfflineLocalstackPlugin {
         this.options = options;
 
         this.localstack = new Localstack(serverless, options);
+        this.localstack.reconfigureAWS();
         this.kinesisConsumer = new KinesisConsumer(serverless, options);
 
         this.commands = {
