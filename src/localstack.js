@@ -113,7 +113,7 @@ export default class Localstack extends AbstractBaseClass {
     static configureAWS(AWSp) {
         const contents = fs.readFileSync(configFilePath);
         let configChanges = JSON.parse(contents);
-        AWS.config.update(configChanges);
+        AWSp.config.update(configChanges);
     }
 
     writeConfigs(configChanges) {
