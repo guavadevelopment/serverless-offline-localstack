@@ -80,7 +80,7 @@ export default class Localstack extends AbstractBaseClass {
         this.debug('Final configuration: ' + JSON.stringify(configChanges));
         // configure the serverless aws sdk
         this.awsProvider.sdk.config.update(configChanges);
-        this.writeConfigs(configChanges);
+        AWS.config.update(configChanges);
     }
 
     loadEndpointsFromDisk(endpointFile) {
@@ -107,22 +107,13 @@ export default class Localstack extends AbstractBaseClass {
             return Promise.resolve('');
         }
 
-        if (AWS.config[service]) {
-            this.debug(`Using custom endpoint for ${service}: ${endpoint}`);
-
-            if (AWS.config['s3'] && params.TemplateURL) {
-                this.debug(`Overriding S3 templateUrl to ${AWS.config.s3.endpoint}`);
-                params.TemplateURL = params.TemplateURL.replace(/https:\/\/s3.amazonaws.com/, AWS.config['s3']);
-            }
-        }
-
         return this.awsProviderRequest(service, method, params);
     }
 
     static configureAWS(AWSp) {
         const contents = fs.readFileSync(configFilePath);
         let configChanges = JSON.parse(contents);
-        AWSp.config.update(configChanges);
+        AWS.config.update(configChanges);
     }
 
     writeConfigs(configChanges) {
