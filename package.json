@@ -1,7 +1,7 @@
 {
   "name": "serverless-offline-localstack",
   "version": "0.0.1",
-  "main": "./lib/index.js",
+  "main": "./src/index.js",
   "keywords": [
     "hooks",
     "plugin",
@@ -9,10 +9,10 @@
     "serverless-offline",
     "localstack"
   ],
-  "author": "Adrian Jagnanan",
+  "author": "David Ewen",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/lookinglass-in/serverless-offline-localstack"
+    "url": "git+ssh://git@github.com/guavadevelopment/serverless-offline-localstack"
   },
   "scripts": {
     "lint": "eslint .",
